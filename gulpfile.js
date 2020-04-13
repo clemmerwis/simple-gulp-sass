@@ -1,9 +1,11 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const del = require('del');
+var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('styles', () => {
     return gulp.src('sass/*.scss')
+        .pipe(autoprefixer())
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./css/'));
 });
