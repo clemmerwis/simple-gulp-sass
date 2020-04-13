@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  background-color: #fafafa; }
+  background-color: #ddd; }
 
 .main.main-grid {
   display: grid;
@@ -9,7 +9,11 @@ html, body {
   background-color: #2196F3;
   padding: 10px; }
   .main.main-grid .grid-item {
+<<<<<<< HEAD
     background-color: rgba(255, 255, 25, 0.8);
+=======
+    background-color: rgba(255, 255, 255, 0.8);
+>>>>>>> autoPrefixer
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 20px;
     font-size: 30px;
