@@ -1,6 +1,7 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
 
 var input = './sass/*.scss';
 var output = './css';
@@ -11,6 +12,7 @@ gulp.task('sass', function () {
     .src(input)
     // Run Sass on those files
     .pipe(sass())
+    .pipe(autoprefixer())
     // Write the resulting CSS in the output folder
     .pipe(gulp.dest(output));
 });
