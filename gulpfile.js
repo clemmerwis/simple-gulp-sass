@@ -1,25 +1,26 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const del = require('del');
-var autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync').create();
 
-gulp.task('styles', () => {
-    return gulp.src('sass/*.scss')
+function style() {
+    return gulp.src('./scss/**/*.scss')
         .pipe(autoprefixer())
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css/'));
-});
+        .pipe(gulp.dest('./css/'))
+        .pipe(browserSync.stream());
+};
 
-gulp.task('clean', () => {
-    return del([
-        'css/style.css',
-    ]);
-});
-
-gulp.task('watch', () => {
-    gulp.watch('sass/*.scss', (done) => {
-        gulp.series(['clean', 'styles'])(done);
+function watch() {
+    browserSync.init({
+        server: {
+            baseDir: './'
+        }
     });
-});
+    gulp.watch('./scss/**/*.scss', style);
+    gulp.watch('./*.html').on('change', browserSync.reload)
+    gulp.watch('./js/**/*.js').on('change', browserSync.reload)
+}
 
-gulp.task('default', gulp.series(['clean', 'styles']));
+exports.style = style;
+exports.watch = watch;
